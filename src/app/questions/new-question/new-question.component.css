@@ -1,0 +1,14 @@
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+.red-text {
+    color: red;
+}
+.label {
+    color: #09F;
+    cursor: pointer;
+    font-size: 18px;
+}
+.green-text {
+    color: green;
+}

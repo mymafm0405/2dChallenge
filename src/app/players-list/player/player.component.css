@@ -1,0 +1,14 @@
+.red-text {
+    color: red;
+}
+.greenBack {
+  background-color: rgb(0, 85, 0);
+  color: yellow;
+  font-weight: bold;
+  border: 1px white solid;
+}
+.greyBack {
+  background-color: rgb(129, 0, 0);
+  color: rgb(207, 207, 207);
+  border: 1px white solid;
+}

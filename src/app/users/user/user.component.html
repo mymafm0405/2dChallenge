@@ -1,0 +1,83 @@
+<div class="row text-center" *ngIf="!confirmed" style="min-height: 700px; height: 100%;">
+    <div class="col-md-4 col-md-push-4" style="margin-top: 100px;">
+            <div class="form-group">
+                <img src="../../../assets/images/gro.png" style="width: 300px; margin-bottom: 30px;">
+                <input style="padding: 20px; margin-bottom: 30px; font-size: 20px; color: red; font-weight: bold;" type="text" class="form-control text-center" placeholder="أدخل رقم الطالبة" [(ngModel)]="username" required>
+                <p class="red-text" *ngIf="usernameError && !joinedError">Username Invalid!</p>
+                <p class="red-text" *ngIf="joinedError && !usernameError">Player already joined!</p>
+            </div>
+            <button class="btn btn-default btn-lg" style="width: 200px;" (click)="onJoinClick()" [disabled]="username === ''">Join</button>
+    </div>
+</div>
+<!-- <div class="row" *ngIf="confirmed">
+    <div class="col-md-12">
+        <button class="btn btn-danger" (click)="onSignOut()">Sign-Out</button>
+    </div>
+</div> -->
+<div *ngIf="confirmed" style="min-height: 700px;">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h3 style="color: yellow; font-size: 80px; font-weight: bold;">{{playerName}}</h3>
+        </div>
+    </div>
+    <div class="row text-center" *ngIf="!answerReady">
+        <div class="col-md-12">
+            <!-- <h4>Current Questions in round</h4> -->
+            <h4 style="color: white;">سوف تظهر الأسئلة الآن ، كوني مستعده</h4>
+        </div>
+    </div>
+    <div class="row text-center" *ngIf="foundQuestions.length === 0 && !answerReady">
+        <div class="col-md-12">
+            <!-- <p>No questions at the moment</p> -->
+            <p style="color: rgb(148, 148, 255);">جاري تحديد الأسئلة</p>
+        </div>
+    </div>
+    <div class="row text-center" *ngIf="foundQuestions.length > 0 && answerReady && !loadingQuestions">
+        <p *ngIf="!answerReady" class="red-text">You can not answer right now ( Time is finished OR Round not started yet )</p>
+        <div *ngFor="let player of currentPlayers">
+            <div *ngIf="player.id === userId">
+                <div *ngFor="let ques of foundQuestions; let i = index; let plyQues of playerQuestions">
+                    <div *ngIf="currentIndex === i">
+                        <h1 style="color: #FFF; font-size: 60px;">{{foundQuestions[i].title}}</h1>
+                        <div *ngIf="questionsWithImages.length > 0">
+                            <div *ngFor="let quesImage of questionsWithImages">
+                                <img *ngIf="quesImage.questionId === ques.id" [src]="quesImage.imageUrl" height="250px" style="max-width: 500px; width: 100%;">
+                            </div>
+                        </div>
+                        <div class="col-xs-4" *ngFor="let answer of ques.answers">
+                          <button class="btn btn-warning btn-lg" style="margin-top: 30px; margin-bottom: 30px; max-width: 150px; width: 100%; color: #000; font-weight: bold; font-size: 25px;"
+                          (click)="onAnswerClick(answer.id, ques.id, i, player.id)">{{answer.answer}}</button>
+                        </div>
+                    </div>
+
+                    <!-- <h1 style="color: #FFF; font-size: 60px;">{{ques.title}}</h1>
+                    <div *ngIf="questionsWithImages.length > 0">
+                        <div *ngFor="let quesImage of questionsWithImages">
+                            <img *ngIf="quesImage.questionId === ques.id" [src]="quesImage.imageUrl" width="600px" height="300px">
+                        </div>
+                    </div>
+                    <button class="btn btn-warning btn-lg" style="margin: 20px; min-width: 150px; color: #000; font-weight: bold; font-size: 25px;" *ngFor="let answer of ques.answers"
+                    (click)="onAnswerClick(answer.id, ques.id, i, player.id)"
+                    [disabled]="answerReady === false || plyQues.answered === true">{{answer.answer}}</button> -->
+                    <!-- <p>{{answerReady}}</p>
+                    <p>{{plyQues.answered}}</p> -->
+                </div>
+                <div *ngIf="currentIndex === foundQuestions.length">
+                    <!-- <h3 style="color: yellow; padding-top: 30px; padding-bottom: 30px;">Well done, You've finished all questions</h3> -->
+                    <h3 style="color: yellow; padding-top: 30px; padding-bottom: 30px;">أحسنتِ ، لقد انتهت جميع الأسئلة</h3>
+                    <img src="../../../assets/images/thumbs-up.png" height="300px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center" *ngIf="answerReady && loadingQuestions">
+      <div class="col-md-12">
+        <img src="../../../assets/images/loading.gif">
+      </div>
+    </div>
+    <div class="row text-center" *ngIf="!answerReady">
+        <div class="col-md-12">
+            <img src="../../../assets/images/get-ready.png" style="margin-top: 100px; max-width: 400px; width: 100%;">
+        </div>
+    </div>
+</div>

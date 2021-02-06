@@ -1,0 +1,53 @@
+<!-- <div class="row" *ngIf="currentPlayersFinished.length > 0">
+    <div class="col-xs-4 thumbnail" style="min-height: 300px;" *ngFor="let player of currentPlayersFinished; let i = index">
+        <h4>{{player.name}}</h4>
+        <p [class]="player.winner === true ? 'winner' : ''"><span style="color: #09F; font-weight: bold;">{{ player.minuts }}</span> Minuts : <span style="color: #09F; font-weight: bold;">{{ player.seconds }}</span> Seconds</p>
+        <div *ngFor="let ques of currentQuestionsInRound; let i = index">
+            <h4>Ques No.: {{i + 1}}</h4>
+
+            <div *ngFor="let ans of answersArray; let i = index">
+                <div *ngIf="ans.plyId === player.id && ans.quesId === ques.id">
+                    <p *ngIf="ans.ansId !== 0">{{ans.ansId === ans.correctId ? 'Correct' : 'Wrong'}}</p>
+                    <p *ngIf="ans.ansId === 0" class="red-text">Not answered</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div> -->
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <p *ngIf="currentPlayersFinished.length === 0" class="no-players-finished">No players finished yet...</p>
+    </div>
+</div>
+<div class="row text-center" *ngIf="noWinnerDetected && !answerReady && !winnerPlayerId">
+  <div class="col-md-12">
+    <h2>No winners detected</h2>
+  </div>
+</div>
+<div class="row" *ngIf="currentPlayersFinished.length > 0">
+    <div [class]="player.winner === true ? 'col-xs-2 thumbnail text-center winner' : 'col-xs-2 thumbnail text-center'" style="border: 5px solid #333; margin-left: 5px; margin-right: 5px" *ngFor="let player of currentPlayersFinished; let i = index">
+        <img *ngIf="player.winner" src="../../assets/images/face.PNG" class="img-responsive" width="100px">
+        <h4 style="border: 1px #CCC solid; padding: 10px; font-size: 22px; font-weight: bold; background-color: rgb(249, 255, 226);">{{player.name}}</h4>
+        <div class="col-xs-8 text-center">
+            <h4 style="font-weight: bold; font-size: 16px; color: darkmagenta;">{{player.minuts}} Minuts <br><br> {{player.seconds}} Seconds</h4>
+        </div>
+        <div class="col-xs-4 text-center">
+            <img src="../../assets/images/timer.gif" class="img-responsive" width="250">
+        </div>
+        <div class="col-xs-12">
+            <div *ngFor="let ques of currentQuestionsInRound; let i = index">
+                <h4 style="font-weight: bold;">Ques: {{i + 1}}
+                    <div *ngFor="let ans of answersArray; let i = index">
+                        <div *ngIf="ans.plyId === player.id && ans.quesId === ques.id">
+                            <div *ngIf="ans.ansId !== 0 && ans.ansId === ans.correctId"><span class="glyphicon glyphicon-ok" style="color: green; font-size: 20px;"></span></div>
+                            <div *ngIf="ans.ansId !== 0 && ans.ansId !== ans.correctId"><span class="glyphicon glyphicon-remove" style="color: red; font-size: 20px;"></span></div>
+                            <div *ngIf="ans.ansId === 0" class="red-text">Not answered</div>
+                        </div>
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>

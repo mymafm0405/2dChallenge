@@ -1,0 +1,40 @@
+<!-- <h4>Minuts: <input type="number" [(ngModel)]="setMinuts" (change)="onChange()" [disabled]="answerReady"></h4>
+<p class="red-text" *ngIf="showTimerError">Please enter a valid number!</p>
+<button class="btn btn-primary" (click)="onStartTimer()" [disabled]="answerReady">Start</button>
+<button class="btn btn-danger" (click)="onStopTimer()" [disabled]="!answerReady">Stop</button> -->
+
+<div class="row" style="margin-top: 25px; margin-bottom: 25px;">
+    <div class="col-xs-3">
+        <img src="../../assets/images/noura-small-flip.png" class="img-responsive">
+    </div>
+    <div class="col-xs-6 text-center" style="padding-top: 100px;">
+        <h1
+            style="
+                font-size: 150px;
+                color: #000;
+                border: 5px solid #000;
+                background-color: yellow;
+                border-radius: 100px;">{{minuts === 0 ? '00' : minuts}} : {{seconds === 0 ? '00' : seconds}}</h1>
+        <h4><input type="number" style="width: 150px; margin: 0 auto;" class="form-control" [(ngModel)]="setMinuts" (change)="onChange()" [disabled]="answerReady"></h4>
+        <button class="btn btn-success btn-lg" (click)="onStartTimer()" [disabled]="answerReady || setMinuts == 0 || !setMinuts">Start</button>
+        <button class="btn btn-danger btn-lg" (click)="onStopTimer()" [disabled]="!answerReady">Stop</button>
+    </div>
+    <div class="col-xs-3">
+        <img src="../../assets/images/noura-small.png" class="img-responsive">
+    </div>
+</div>
+<!-- <audio id="myAudio">
+    <source src="../../assets/sounds/001.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio> -->
+<!-- <script>
+    var x = document.getElementById("myAudio");
+
+    function playAudio() {
+      x.play();
+    }
+
+    function pauseAudio() {
+      x.pause();
+    }
+</script> -->

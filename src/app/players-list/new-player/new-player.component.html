@@ -1,0 +1,32 @@
+<div class="row" style="min-height: 600px; margin-top: 200px">
+    <div class="col-xs-4 col-xs-push-4">
+        <form (ngSubmit)="onSubmitForm()" #playerForm="ngForm">
+            <div class="form-group">
+                <label for="name">Group name: </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    style="padding: 20px;"
+                    placeholder="Group name..."
+                    ngModel
+                    name="name"
+                    #name="ngModel"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="name">Username: </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    style="padding: 20px;"
+                    placeholder="Username..."
+                    ngModel
+                    name="username"
+                    #name="ngModel"
+                    required>
+            </div>
+            <button class="btn btn-success" type="submit">Save Player</button>
+            <p class="yellow-text" *ngIf="savedMsg">Your player saved successfully!</p>
+        </form>
+    </div>
+</div>

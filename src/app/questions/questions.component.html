@@ -1,0 +1,21 @@
+<div class="row" style="margin: 20px 0">
+  <div class="col-xs-2">
+    <button (click)="showNewFolder()" class="btn btn-success">Create Folder <span class="glyphicon glyphicon-plus"></span></button>
+  </div>
+</div>
+<app-new-folder *ngIf="showFolderForm"></app-new-folder>
+<app-folder></app-folder>
+<div class="row">
+    <div class="col-xs-8">
+        <app-questions-list></app-questions-list>
+    </div>
+    <div class="col-xs-4">
+        <app-new-question></app-new-question>
+    </div>
+</div>
+<!-- <div class="row text-center">
+    <div class="col-xs-12">
+        <button class="btn btn-warning" [disabled]="numOfSelected === 0 || isRound" (click)="onSubmitRound()">Submit Round</button>
+        <h4 class="red-text" style="margin-top: 40px;" *ngIf="isRound">You have a running round, Finish it before you can start a new one.</h4>
+    </div>
+</div> -->

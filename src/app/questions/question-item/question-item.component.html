@@ -1,0 +1,46 @@
+<div *ngIf="questions.length > 0">
+    <div class="row" style="color: #FFF; padding: 20px;">
+        <div class="col-xs-12 text-left">
+            <div class="col-xs-5 text-center">
+                <p>Question Title</p>
+            </div>
+            <div class="col-xs-2 text-center">
+                <p>Question Type</p>
+            </div>
+            <div class="col-xs-5 text-center">
+                <p>Actions</p>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngFor="let question of questions; let i = index" style="border-bottom: 1px solid rgb(231, 229, 250); padding-top: 10px; padding-bottom: 10px;">
+        <div class="col-xs-12">
+            <div class="col-xs-5">
+                <h4 class="question-title">{{ question.title }}</h4>
+            </div>
+            <div class="col-xs-2 text-center">
+                <h4 style="color: rgb(194, 194, 194);">{{ question.type }}</h4>
+            </div>
+            <div class="col-xs-5 text-center">
+                <button [class]="viewAnswer ? 'btn btn-info active' : 'btn btn-info'" (click)="onViewAnswers(question.id, i)" style="min-width: 130px;">{{viewAnswer && currentIndex === i ? 'Hide Answers' : 'Show Answers'}}</button> |
+                <!-- <button class="btn btn-default" [disabled]="isRoundRunning">Edit</button> | -->
+                <!-- <button class="btn btn-default" (click)="onShowAnswers(i)" style="min-width: 130px;">Show Answers</button> | -->
+                <button [class]="question.selected ? 'btn btn-success' : 'btn btn-primary'" (click)="onSelect(i)" style="min-width: 130px;">{{ question.selected ? 'Deselect' : 'Select' }}</button> |
+                <button class="btn btn-danger" type="button" (click)="onRemoveQuestion(i)"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+        </div>
+        <div class="col-xs-7" *ngIf="viewAnswer && currentIndex === i">
+            <div class="row">
+                <div class="col-xs-4" *ngFor="let answer of answers; let i = index">
+                    <button [class]="answer.correct ? 'btn btn-success' : 'btn btn-default'" style="min-width: 150px;">{{answer.answer}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="questions.length === 0">
+    <div class="col-xs-12 text-center">
+        <h4 class="red-text">No Questions at the moment...</h4>
+        <p>Please add some...</p>
+    </div>
+</div>
+

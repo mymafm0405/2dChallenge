@@ -1,0 +1,11 @@
+.no-players-finished {
+    color: #F90;
+    font-size: 25px;
+    margin: 60px;
+}
+.winner {
+    background-color: #a3ffa3;
+}
+.red-text {
+    color: red;
+}

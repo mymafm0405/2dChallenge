@@ -1,0 +1,63 @@
+<div class="row text-center" style="background-color: #c241c7; min-height: 1000px;">
+    <div class="col-xs-12" style="padding: 20px;">
+        <h4 style="color: yellow;">Add new Question</h4>
+        <button class="btn btn-success btn-lg" (click)="onAddQuestion()"><span class="glyphicon glyphicon-plus"></span></button>
+    </div>
+    <div class="col-xs-12" *ngIf="showQuestionForm">
+        <p>Choose the question type:</p>
+        <h4>
+            <input type="radio" id="choose" (click)="onTypeChoose()" name="questionType"> <label for="choose" class="label">Choose</label> | | 
+            <input type="radio" id="trueOrFalse" (click)="onTypeTrueOrFalse()" name="questionType"> <label for="trueOrFalse" class="label">True or False</label> | | 
+            <input type="radio" id="writting" (click)="onTypeWritting()" name="questionType"> <label for="writting" class="label">Writting</label>
+        </h4>
+    </div>
+    <div class="col-xs-12" *ngIf="showQuestionForm && questionType === 'trueOrFalse'">
+        TrueOrFalse Form
+    </div>
+    <div class="col-xs-12" *ngIf="showQuestionForm && questionType === 'writting'">
+        Writting Form
+    </div>
+    <div class="col-xs-12 text-left" *ngIf="showQuestionForm && questionType === 'choose'">
+        <form [formGroup]="chooseForm" (ngSubmit)="onSaveChooseQuestion()">
+            <div class="form-group">
+                <label for="title">Question title: </label>
+                <textarea 
+                    id="title" 
+                    class="form-control" 
+                    rows="3" 
+                    placeholder="Question title..."
+                    formControlName="title"></textarea>
+                <p class="red-text" *ngIf="chooseForm.get('title').invalid && chooseForm.get('title').touched">This field is required!</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-10">
+                    <h4 style="color: yellow;">Answers <button class="btn btn-warning" (click)="onAddAnswers()" type="button"><span class="glyphicon glyphicon-plus"></span></button></h4>
+                </div>
+                <div class="col-xs-2">
+                    <p style="color: white;">Correct Answer</p>
+                </div>
+            </div>
+            <div formArrayName="answers">
+                <div class="row" *ngFor="let answer of getControls(); let i = index" [formGroupName]="i">
+                    <div class="col-xs-10">
+                        <input 
+                            type="text"
+                            class="form-control"
+                            formControlName="answer"
+                            placeholder="Answer...">
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="checkbox" [value]="i" class="form-control" formControlName="correct">
+                    </div>
+                    <!-- <p class="red-text" *ngIf="chooseForm.get('answers').invalid && chooseForm.get('answers').touched">This field is required!</p> -->
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 30px; margin-bottom: 30px;">
+                <label for="image" style="color: #7bb9ff;">Select an image: ( Optional )</label>
+                <input type="file" accept="image/*" class="form-control" formControlName="imageUrl" (change)="onPreview($event)">
+            </div>
+            <button class="btn btn-success" type="submit" [disabled]="chooseForm.invalid || answers.length === 0">Save Question</button>
+            <h4 class="green-text" *ngIf="savedMsg">Your Question saved successfully!</h4>
+        </form>
+    </div>
+</div>
