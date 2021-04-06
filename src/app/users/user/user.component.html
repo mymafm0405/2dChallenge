@@ -44,8 +44,8 @@
                                 <img *ngIf="quesImage.questionId === ques.id" [src]="quesImage.imageUrl" height="250px" style="max-width: 500px; width: 100%;">
                             </div>
                         </div>
-                        <div class="col-xs-4" *ngFor="let answer of ques.answers">
-                          <button class="btn btn-warning btn-lg" style="margin-top: 30px; margin-bottom: 30px; max-width: 150px; width: 100%; color: #000; font-weight: bold; font-size: 25px;"
+                        <div class="col-xs-12" *ngFor="let answer of ques.answers">
+                          <button class="btn btn-warning btn-lg" style="margin-top: 30px; margin-bottom: 30px; width: 100%; color: #000; font-weight: bold; font-size: 25px;"
                           (click)="onAnswerClick(answer.id, ques.id, i, player.id)">{{answer.answer}}</button>
                         </div>
                     </div>
