@@ -27,7 +27,10 @@ export class RoundService {
         this.timerSound.src = '../../assets/sounds/timer.mp3';
         this.timerSound.load();
         this.timerSound.play();
-        this.timerSound.loop = true;
+        // this.timerSound.loop = true;
+        setTimeout(() => {
+          this.timerSound.pause();
+        }, 20000);
         // this.timerSound.autoplay = true;
     }
     onPauseTimerSound() {
@@ -40,6 +43,9 @@ export class RoundService {
         this.winnerSound.src = '../../assets/sounds/winner.mp3';
         this.winnerSound.load();
         this.winnerSound.play();
+        setTimeout(() => {
+          this.winnerSound.pause();
+        }, 15000)
     }
 
     onPauseWinnerSound() {

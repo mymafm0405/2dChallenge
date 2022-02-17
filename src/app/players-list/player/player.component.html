@@ -29,9 +29,9 @@
     <div class="col-md-4" style="margin-bottom: 30px; text-align: center; height: 450px;" *ngFor="let player of currentPlayers; let i = index">
         <h2 [ngClass]="player.joined ? 'greenBack' : 'greyBack'" style="font-size: 28px; text-align: center; width: 100%; border-radius: 7px; padding: 10px;">{{player.name}}</h2>
         <img *ngIf="player.joined" [src]="'../../../assets/images/'+i+'.png'" class="img-responsive" style="width: 350px; margin:0 auto;">
-        <img *ngIf="!player.joined" [src]="'../../../assets/images/'+i+'.png'" class="img-responsive" style="width: 350px; margin:0 auto;">
+        <img *ngIf="!player.joined" src="../../../assets/images/off.png" class="img-responsive" style="width: 350px; margin:0 auto;">
         <br>
-        <img *ngIf="player.joined" src="../../../assets/images/on.png" style="width: 60px;">
-        <img *ngIf="!player.joined" src="../../../assets/images/off.png" style="width: 60px;">
+        <!-- <img *ngIf="player.joined" src="../../../assets/images/on.png" style="width: 60px;">
+        <img *ngIf="!player.joined" src="../../../assets/images/off.png" style="width: 60px;"> -->
     </div>
 </div>
