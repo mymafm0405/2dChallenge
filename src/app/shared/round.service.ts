@@ -27,10 +27,10 @@ export class RoundService {
         this.timerSound.src = '../../assets/sounds/timer.mp3';
         this.timerSound.load();
         this.timerSound.play();
-        // this.timerSound.loop = true;
-        setTimeout(() => {
-          this.timerSound.pause();
-        }, 20000);
+        this.timerSound.loop = true;
+        // setTimeout(() => {
+        //   this.timerSound.pause();
+        // }, 20000);
         // this.timerSound.autoplay = true;
     }
     onPauseTimerSound() {
